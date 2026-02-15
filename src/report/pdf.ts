@@ -67,6 +67,11 @@ export async function renderAttestationPDF(opts: {
   const run = manifest.run ?? {};
   const engine = manifest.engine ?? {};
 
+  // Moved up so merkle can be referenced in appendix safely
+  const claims = a.claims ?? {};
+  const fileDigests = claims.file_digests ?? {};
+  const merkle = claims.merkle ?? {};
+
   kv(doc, "Dataset / Artifact:", subject.filename ?? "—");
   kv(doc, "Bytes:", String(subject.bytes ?? "—"));
   kv(doc, "Run ID:", run.run_id ?? "—");
@@ -80,8 +85,9 @@ export async function renderAttestationPDF(opts: {
   );
   doc.fillOpacity(1);
   line(doc, 6);
-    // Merkle Proof Appendix (sampled)
-  const proofs = (a.proofs ?? {});
+
+  // Merkle Proof Appendix (sampled)
+  const proofs = a.proofs ?? {};
   const sampled = Array.isArray(proofs.sampled) ? proofs.sampled : [];
 
   doc.font("Helvetica-Bold").fontSize(13).text("Appendix: Sample Merkle Inclusion Proofs");
@@ -95,8 +101,8 @@ export async function renderAttestationPDF(opts: {
 
   kv(doc, "Proof Type:", proofs.type ?? "—");
   kv(doc, "Merkle Root:", "");
-  mono(doc, proofs.merkle_root ?? merkle.root ?? "—");
-  kv(doc, "Algorithm:", proofs.algorithm ?? merkle.algorithm ?? "—");
+  mono(doc, String(proofs.merkle_root ?? merkle.root ?? "—"));
+  kv(doc, "Algorithm:", String(proofs.algorithm ?? merkle.algorithm ?? "—"));
   doc.moveDown(0.4);
 
   const show = sampled.slice(0, 5);
@@ -110,7 +116,6 @@ export async function renderAttestationPDF(opts: {
 
       doc.font("Helvetica").text("siblings_hex (bottom→top):");
       const sibs: string[] = Array.isArray(p.siblings_hex) ? p.siblings_hex : [];
-      // Don’t explode the PDF: cap to first 12 siblings
       mono(doc, sibs.slice(0, 12).join("\n") + (sibs.length > 12 ? "\n… (truncated)" : ""));
       doc.moveDown(0.6);
     }
@@ -131,10 +136,6 @@ export async function renderAttestationPDF(opts: {
   // Cryptographic fingerprints
   doc.font("Helvetica-Bold").fontSize(13).text("Cryptographic Fingerprints");
   doc.moveDown(0.4);
-
-  const claims = a.claims ?? {};
-  const fileDigests = claims.file_digests ?? {};
-  const merkle = claims.merkle ?? {};
 
   kv(doc, "File Digest (BLAKE2b-512):", "");
   mono(doc, fileDigests.blake2b_512 ?? "—");

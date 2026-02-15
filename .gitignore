@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+*.tsbuildinfo
+
+# runtime artifacts
+.resethiq/
+out/
+*.log
+
+# local files
+.DS_Store
+.env
+.env.local
+
+# sample data
+sample_data.csv
