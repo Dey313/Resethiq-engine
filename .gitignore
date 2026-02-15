@@ -17,3 +17,4 @@ out/
 
 # sample data
 sample_data.csv
+node_modules/
