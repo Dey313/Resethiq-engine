@@ -1,0 +1,60 @@
+{
+  "schema": "resethiq.attestation.v1",
+  "manifest": {
+    "schema": "resethiq.manifest.v1",
+    "engine": {
+      "name": "Resethiq Integrity Engine",
+      "version": "0.1.0"
+    },
+    "run": {
+      "run_id": "9c379327-c0c6-4f2d-a670-cb08ee9aed77",
+      "created_at": "2026-02-15T05:04:34.566Z"
+    },
+    "subject": {
+      "filename": "package.json",
+      "bytes": 559
+    },
+    "environment": {
+      "node": "v20.20.0",
+      "platform": "darwin",
+      "arch": "arm64"
+    }
+  },
+  "canonicalization": {
+    "spec_id": "cdr-stream-v1",
+    "description": "Deterministic fixed-size chunking over byte-stream; schema-aware canonicalization comes in v2."
+  },
+  "claims": {
+    "schema": "resethiq.signed_payload.v1",
+    "manifest_sha512": "bdd41ebdb258c6d8a67e499c1aeccf92a1b2784fc691c234c0cec7367fd4d91c56fcd172052dde187e1574bb0184b041735269652a1c57a182732327b0d391dc",
+    "file_digests": {
+      "blake2b_512": "e938fe52cbeb7696b000879e7c12d0ae8eec799d209974d3bbf5ea50c43edd334d9523aaf51852a6eb55e3453b78acae545d0e5ffa18f2a3d3cc942d61e01b9c",
+      "sha512": "35706a1e837d60ab4610c918ca08a258d82962ddda5d884485d0a4c716874e327be0c919b1a97aaf77949627959c9dc22f742c4115890a93304505c6743836cb"
+    },
+    "merkle": {
+      "algorithm": "blake2b512",
+      "root": "e938fe52cbeb7696b000879e7c12d0ae8eec799d209974d3bbf5ea50c43edd334d9523aaf51852a6eb55e3453b78acae545d0e5ffa18f2a3d3cc942d61e01b9c",
+      "leaf_count": 1,
+      "chunk_size": 4194304
+    }
+  },
+  "proofs": {
+    "type": "merkle_inclusion_v1",
+    "merkle_root": "e938fe52cbeb7696b000879e7c12d0ae8eec799d209974d3bbf5ea50c43edd334d9523aaf51852a6eb55e3453b78acae545d0e5ffa18f2a3d3cc942d61e01b9c",
+    "algorithm": "blake2b512",
+    "sampled": [
+      {
+        "index": 0,
+        "leaf_hex": "e938fe52cbeb7696b000879e7c12d0ae8eec799d209974d3bbf5ea50c43edd334d9523aaf51852a6eb55e3453b78acae545d0e5ffa18f2a3d3cc942d61e01b9c",
+        "siblings_hex": [],
+        "verifies": true
+      }
+    ]
+  },
+  "signature": {
+    "algorithm": "ed25519",
+    "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA0VgXx+SHWvvczMnNK8steBQY46wm7+hWlGGyxui9J70=\n-----END PUBLIC KEY-----\n",
+    "signed_message_sha512": "85d7b60c676edd03348fcf9bba00173f35cf7395369ed11d6267a5d95e544ddc57ccd1284040f63e76b92705556b124a984c32b4b4c2b3cac970bff5f69ad614",
+    "signature_b64": "e/RP/Id2mAtr4EHB9Bqgj8PsLnW5gABj7Ynz5g5eNGFejQ+/eBhmCik69m/MdFAVU97iO6m0qHuTtziIHtqQCA=="
+  }
+}
